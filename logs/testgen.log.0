@@ -143,3 +143,9 @@ Caused by: java.io.IOException: ResponseParser parseProblemAnalysis: Invalid JSO
 	at com.competitive.ai.ResponseParser.parseProblemAnalysis(ResponseParser.java:85)
 	at com.competitive.ai.AIService.analyzeProblem(AIService.java:155)
 	... 9 more
+2026-05-18 01:13:20.848 INFO    [main           ] [Logger] Logging system initialized
+2026-05-18 01:13:20.849 INFO    [main           ] [Main] TestGen application starting...
+2026-05-18 01:13:20.964 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-18 01:13:22.340 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-18 01:13:44.300 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Starting problem parse
+2026-05-18 01:13:47.805 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Parse successful: Stones game

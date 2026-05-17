@@ -453,7 +453,7 @@ public class AIConnector {
         ObjectNode body = mapper.createObjectNode();
         body.put("model", GROQ_MODEL_TEXT);
         body.put("temperature", 0.2);
-        body.put("max_tokens", 4096);
+        body.put("max_tokens", 8192);
         
         ArrayNode messages = body.putArray("messages");
         ObjectNode message = messages.addObject();
@@ -563,7 +563,7 @@ public class AIConnector {
         ObjectNode body = mapper.createObjectNode();
         body.put("model", OPENAI_MODEL_TEXT);
         body.put("temperature", 0.2);
-        body.put("max_tokens", 4096);
+        body.put("max_tokens", 8192);
         
         ArrayNode messages = body.putArray("messages");
         ObjectNode message = messages.addObject();
@@ -626,7 +626,7 @@ public class AIConnector {
         ObjectNode body = mapper.createObjectNode();
         body.put("model", OPENAI_MODEL_VISION);
         body.put("temperature", 0.2);
-        body.put("max_tokens", 4096);
+        body.put("max_tokens", 8192);
         
         ArrayNode messages = body.putArray("messages");
         ObjectNode message = messages.addObject();

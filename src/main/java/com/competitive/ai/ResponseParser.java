@@ -232,24 +232,34 @@ public class ResponseParser {
         }
         
         if (!isValidJson(cleanJson)) {
-            // Provide more detailed error message
-            String preview = cleanJson.length() > 200 ? cleanJson.substring(0, 200) + "..." : cleanJson;
-            String endPreview = cleanJson.length() > 200 ? "..." + cleanJson.substring(cleanJson.length() - 200) : cleanJson;
+            // Try to recover from truncated JSON (common when AI hits max_tokens)
+            // Strategy: find the last complete JSON object and close the array
+            System.err.println("=== DEBUG: Attempting truncated JSON recovery ===");
             
-            // Try to parse and get actual error
-            String parseError = "Unknown";
-            try {
-                mapper.readTree(cleanJson);
-            } catch (Exception e) {
-                parseError = e.getMessage();
+            String recovered = tryRecoverTruncatedJsonArray(cleanJson);
+            if (recovered != null && isValidJson(recovered)) {
+                System.err.println("=== DEBUG: Truncated JSON recovery successful ===");
+                cleanJson = recovered;
+            } else {
+                // Provide more detailed error message
+                String preview = cleanJson.length() > 200 ? cleanJson.substring(0, 200) + "..." : cleanJson;
+                String endPreview = cleanJson.length() > 200 ? "..." + cleanJson.substring(cleanJson.length() - 200) : cleanJson;
+                
+                // Try to parse and get actual error
+                String parseError = "Unknown";
+                try {
+                    mapper.readTree(cleanJson);
+                } catch (Exception e) {
+                    parseError = e.getMessage();
+                }
+                
+                throw new IOException("ResponseParser parseTestcases: Invalid JSON format. " +
+                                      "Parse error: " + parseError + "\n" +
+                                      "Preview (start): " + preview + "\n" +
+                                      "Preview (end): " + endPreview + "\n" +
+                                      "Full response length: " + response.length() + " chars. " +
+                                      "Cleaned JSON length: " + cleanJson.length() + " chars.");
             }
-            
-            throw new IOException("ResponseParser parseTestcases: Invalid JSON format. " +
-                                  "Parse error: " + parseError + "\n" +
-                                  "Preview (start): " + preview + "\n" +
-                                  "Preview (end): " + endPreview + "\n" +
-                                  "Full response length: " + response.length() + " chars. " +
-                                  "Cleaned JSON length: " + cleanJson.length() + " chars.");
         }
         
         try {
@@ -811,6 +821,69 @@ public class ResponseParser {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    /**
+     * Try to recover a truncated JSON array by finding the last complete object.
+     * When AI hits max_tokens, JSON gets cut mid-string. This method finds the
+     * last complete "}" and closes the array with "]".
+     * 
+     * Example: "[{...}, {...}, {\"input\": \"1 0 1 0 1 0" → "[{...}, {...]"
+     * 
+     * @param truncatedJson the truncated JSON string
+     * @return recovered valid JSON string, or null if recovery failed
+     */
+    private static String tryRecoverTruncatedJsonArray(String truncatedJson) {
+        if (truncatedJson == null || !truncatedJson.trim().startsWith("[")) {
+            return null;
+        }
+        
+        // Find the last complete JSON object boundary
+        // We look for "},\n" or "}\n" patterns that indicate end of a complete object
+        int lastCompleteObj = -1;
+        int depth = 0;
+        boolean inString = false;
+        boolean escaped = false;
+        
+        for (int i = 0; i < truncatedJson.length(); i++) {
+            char c = truncatedJson.charAt(i);
+            
+            if (escaped) {
+                escaped = false;
+                continue;
+            }
+            
+            if (c == '\\') {
+                escaped = true;
+                continue;
+            }
+            
+            if (c == '"') {
+                inString = !inString;
+                continue;
+            }
+            
+            if (inString) continue;
+            
+            if (c == '{' || c == '[') {
+                depth++;
+            } else if (c == '}' || c == ']') {
+                depth--;
+                // depth == 1 means we just closed a top-level object inside the array
+                if (depth == 1 && c == '}') {
+                    lastCompleteObj = i;
+                }
+            }
+        }
+        
+        if (lastCompleteObj > 0) {
+            String recovered = truncatedJson.substring(0, lastCompleteObj + 1) + "\n]";
+            System.err.println("=== DEBUG: Recovered JSON by truncating at position " + lastCompleteObj + 
+                             " (original length: " + truncatedJson.length() + ") ===");
+            return recovered;
+        }
+        
+        return null;
     }
     
     /**
