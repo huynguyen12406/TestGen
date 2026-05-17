@@ -257,8 +257,9 @@ public class BackendService {
             // Check if Tesseract is available
             if (!ocrService.isTesseractAvailable()) {
                 logger.accept("[OCR] ✗ Tesseract không tìm thấy");
-                logger.accept("[OCR] Vui lòng chạy: download-tesseract-portable.ps1");
-                throw new Exception("Tesseract not found. Please run download-tesseract-portable.ps1 to download Tesseract.");
+                logger.accept("[OCR] Tải Tesseract tại: https://github.com/UB-Mannheim/tesseract/wiki");
+                logger.accept("[OCR] Giải nén vào thư mục tesseract/ trong project root");
+                throw new Exception("Tesseract not found. Please download from https://github.com/UB-Mannheim/tesseract/wiki and extract to tesseract/ folder.");
             }
             
             logger.accept("[OCR] ✓ Tesseract sẵn sàng");
@@ -277,8 +278,8 @@ public class BackendService {
             
             if (errorMsg.contains("Tesseract not available")) {
                 logger.accept("[ERR] ✗ Tesseract chưa được cài đặt");
-                logger.accept("[ERR] Chạy: download-tesseract-portable.ps1");
-                throw new Exception("Tesseract not available. Please run download-tesseract-portable.ps1", e);
+                logger.accept("[ERR] Tải Tesseract: https://github.com/UB-Mannheim/tesseract/wiki → giải nén vào tesseract/");
+                throw new Exception("Tesseract not available. Download from https://github.com/UB-Mannheim/tesseract/wiki and extract to tesseract/ folder.", e);
             } else if (errorMsg.contains("timeout")) {
                 logger.accept("[ERR] ✗ OCR timeout (30s)");
                 throw new Exception("OCR timeout", e);

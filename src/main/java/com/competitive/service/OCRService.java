@@ -39,7 +39,9 @@ public class OCRService {
         } else {
             tesseractAvailable = false;
             System.out.println("[OCR] Tesseract not found at: " + tesseractExe.getAbsolutePath());
-            System.out.println("[OCR] Please run download-tesseract-portable.ps1 to download Tesseract");
+            System.out.println("[OCR] Please download Tesseract from https://github.com/UB-Mannheim/tesseract/wiki");
+            System.out.println("[OCR] and extract/copy into the 'tesseract/' folder in the project root.");
+            System.out.println("[OCR] Required path: " + projectDir + "/tesseract/tesseract.exe");
         }
     }
     
@@ -59,7 +61,7 @@ public class OCRService {
      */
     public String extractText(File imageFile) throws IOException {
         if (!tesseractAvailable) {
-            throw new IOException("Tesseract not available. Please run download-tesseract-portable.ps1 to download Tesseract.");
+            throw new IOException("Tesseract not available. Download from https://github.com/UB-Mannheim/tesseract/wiki and extract to tesseract/ folder.");
         }
         
         if (!imageFile.exists()) {
@@ -156,7 +158,7 @@ public class OCRService {
             if (progressCallback != null) {
                 progressCallback.accept("[OCR] ✗ Tesseract not found");
             }
-            throw new IOException("Tesseract not available. Please run download-tesseract-portable.ps1 to download Tesseract.");
+            throw new IOException("Tesseract not available. Download from https://github.com/UB-Mannheim/tesseract/wiki and extract to tesseract/ folder.");
         }
         
         if (progressCallback != null) {
