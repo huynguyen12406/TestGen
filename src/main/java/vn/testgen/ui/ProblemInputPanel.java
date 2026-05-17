@@ -229,20 +229,16 @@ public class ProblemInputPanel extends JPanel {
     private void doParse() {
         String text = statementArea.getText().trim();
         
-        // Nếu có ảnh, cho phép text trống (AI sẽ đọc từ ảnh)
+        // Nếu không có text VÀ không có ảnh → lỗi
         if (text.isEmpty() && uploadedImagePath == null) {
             showError(Constants.ERR_EMPTY_STATEMENT);
             Logger.warn("ProblemInputPanel", "Parse attempted with empty statement and no image");
             return;
         }
         
-        // Nếu có ảnh nhưng không có text, dùng placeholder
-        if (text.isEmpty() && uploadedImagePath != null) {
-            text = "[Đọc đề bài từ hình ảnh]";
-        }
-        
         // Tạo biến final để dùng trong lambda
         final String finalText = text;
+        final String imagePath = uploadedImagePath;
 
         parseButton.setEnabled(false);
         setStatus(Constants.STATUS_PARSING, Theme.ACCENT_YELLOW);
@@ -253,7 +249,29 @@ public class ProblemInputPanel extends JPanel {
         SwingWorker<Problem, String> worker = new SwingWorker<>() {
             @Override
             protected Problem doInBackground() throws Exception {
-                return BackendService.getInstance().parseProblem(finalText, type, msg -> publish(msg));
+                BackendService backend = BackendService.getInstance();
+                
+                // Nếu có ảnh → dùng OCR để đọc đề bài từ ảnh
+                if (imagePath != null && !imagePath.isEmpty()) {
+                    publish("[OCR] Đang đọc đề bài từ hình ảnh...");
+                    File imageFile = new File(imagePath);
+                    
+                    if (!imageFile.exists()) {
+                        throw new Exception("File ảnh không tồn tại: " + imagePath);
+                    }
+                    
+                    // Nếu có cả text, nối text + OCR result
+                    if (!finalText.isEmpty()) {
+                        publish("[INFO] Có cả text và ảnh → Kết hợp cả hai");
+                        Problem p = backend.parseProblemFromImage(imageFile, type, msg -> publish(msg));
+                        return p;
+                    } else {
+                        return backend.parseProblemFromImage(imageFile, type, msg -> publish(msg));
+                    }
+                }
+                
+                // Chỉ có text → parse text bình thường
+                return backend.parseProblem(finalText, type, msg -> publish(msg));
             }
 
             @Override

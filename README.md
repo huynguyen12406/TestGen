@@ -122,19 +122,31 @@ Các thư viện đã có sẵn trong `lib/`:
 
 **Không cần cài đặt thêm!**
 
-### Bước 5: Cài Đặt Tesseract OCR (Tùy chọn)
+### Bước 5: Cài Đặt Tesseract OCR (Tùy chọn - cho tính năng đọc đề từ ảnh)
 
-Nếu muốn dùng tính năng đọc đề bài từ hình ảnh:
+Nếu muốn dùng tính năng **đọc đề bài từ hình ảnh (OCR)**:
 
-**Cách 1: Tự động**
-```powershell
-.\download-tesseract-portable.ps1
-```
+1. **Tải Tesseract** từ: https://github.com/UB-Mannheim/tesseract/wiki
+   - Chọn phiên bản Windows 64-bit (ví dụ: `tesseract-ocr-w64-setup-5.4.0.20240606.exe`)
+   - Hoặc tải bản portable (zip): https://github.com/UB-Mannheim/tesseract/releases
 
-**Cách 2: Thủ công**
-1. Download: https://github.com/UB-Mannheim/tesseract/releases
-2. Cài đặt vào `C:\Program Files\Tesseract-OCR`
-3. Copy thư mục vào `tesseract/` trong project
+2. **Cài đặt**:
+   - **Nếu dùng installer**: Cài đặt bình thường, chọn thêm ngôn ngữ English
+   - **Nếu dùng bản portable (zip)**: Giải nén vào thư mục `tesseract/` trong project
+
+3. **Cấu trúc thư mục cần có**:
+   ```
+   TestGen/
+   └── tesseract/
+       ├── tesseract.exe
+       ├── tessdata/
+       │   └── eng.traineddata
+       └── (các file .dll khác)
+   ```
+
+4. **Kiểm tra**: Mở app → tab **Nhập Đề Bài** → chọn ảnh → nếu hiển thị "[OCR] Tesseract found" là OK
+
+> **Lưu ý**: Thư mục `tesseract/` đã được gitignore do kích thước lớn (~200MB). Mỗi người dùng cần tải riêng.
 
 ### Bước 6: Cấu Hình API Keys (BẮT BUỘC)
 
