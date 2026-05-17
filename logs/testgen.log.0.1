@@ -1,0 +1,167 @@
+2026-05-17 02:56:57.669 INFO    [main           ] [Logger] Logging system initialized
+2026-05-17 02:56:57.671 INFO    [main           ] [Main] TestGen application starting...
+2026-05-17 02:56:57.798 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-17 02:56:59.285 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-17 02:57:22.306 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Starting problem parse
+2026-05-17 02:57:54.226 SEVERE  [AWT-EventQueue-0] [ProblemInputPanel] Parse failed
+java.util.concurrent.ExecutionException: java.lang.Exception: Rate limit exceeded
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at java.desktop/javax.swing.SwingWorker.get(SwingWorker.java:613)
+	at vn.testgen.ui.ProblemInputPanel$1.done(ProblemInputPanel.java:268)
+	at java.desktop/javax.swing.SwingWorker$5.run(SwingWorker.java:750)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.run(SwingWorker.java:848)
+	at java.desktop/sun.swing.AccumulativeRunnable.run(AccumulativeRunnable.java:112)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.actionPerformed(SwingWorker.java:858)
+	at java.desktop/javax.swing.Timer.fireActionPerformed(Timer.java:311)
+	at java.desktop/javax.swing.Timer$DoPostEvent.run(Timer.java:243)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: java.lang.Exception: Rate limit exceeded
+	at vn.testgen.backend.BackendService.parseProblem(BackendService.java:130)
+	at vn.testgen.ui.ProblemInputPanel$1.doInBackground(ProblemInputPanel.java:256)
+	at vn.testgen.ui.ProblemInputPanel$1.doInBackground(ProblemInputPanel.java:253)
+	at java.desktop/javax.swing.SwingWorker$1.call(SwingWorker.java:304)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.desktop/javax.swing.SwingWorker.run(SwingWorker.java:343)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: AIService analyzeProblem: Failed to analyze problem - Failed after 3 attempts: Gemini API rate limit exceeded (HTTP 429): Too many requests. Please try again later.
+	at com.competitive.ai.AIService.analyzeProblem(AIService.java:161)
+	at vn.testgen.backend.BackendService.parseProblem(BackendService.java:111)
+	... 8 more
+Caused by: java.io.IOException: Failed after 3 attempts: Gemini API rate limit exceeded (HTTP 429): Too many requests. Please try again later.
+	at com.competitive.ai.AIConnector.retryWithBackoff(AIConnector.java:798)
+	at com.competitive.ai.AIConnector.sendRequest(AIConnector.java:201)
+	at com.competitive.ai.AIService.analyzeProblem(AIService.java:152)
+	... 9 more
+Caused by: java.io.IOException: Gemini API rate limit exceeded (HTTP 429): Too many requests. Please try again later.
+	at com.competitive.ai.AIConnector.handleGeminiResponse(AIConnector.java:395)
+	at com.competitive.ai.AIConnector.sendToGemini(AIConnector.java:301)
+	at com.competitive.ai.AIConnector.lambda$sendRequest$0(AIConnector.java:203)
+	at com.competitive.ai.AIConnector.retryWithBackoff(AIConnector.java:753)
+	... 11 more
+2026-05-17 21:28:04.497 INFO    [main           ] [Logger] Logging system initialized
+2026-05-17 21:28:04.498 INFO    [main           ] [Main] TestGen application starting...
+2026-05-17 21:28:04.619 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-17 21:28:06.040 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-17 21:29:30.045 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Starting problem parse
+2026-05-17 21:29:31.088 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Parse successful: Dãy con t?ng dài nh?t
+2026-05-17 23:17:44.708 INFO    [main           ] [Logger] Logging system initialized
+2026-05-17 23:17:44.710 INFO    [main           ] [Main] TestGen application starting...
+2026-05-17 23:17:44.919 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-17 23:17:46.940 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-17 23:19:35.063 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Starting problem parse
+2026-05-17 23:19:35.997 SEVERE  [AWT-EventQueue-0] [ProblemInputPanel] Parse failed
+java.util.concurrent.ExecutionException: java.lang.Exception: Failed to parse problem: AIService analyzeProblem: Failed to analyze problem - ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at java.desktop/javax.swing.SwingWorker.get(SwingWorker.java:613)
+	at vn.testgen.ui.ProblemInputPanel$1.done(ProblemInputPanel.java:268)
+	at java.desktop/javax.swing.SwingWorker$5.run(SwingWorker.java:750)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.run(SwingWorker.java:848)
+	at java.desktop/sun.swing.AccumulativeRunnable.run(AccumulativeRunnable.java:112)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.actionPerformed(SwingWorker.java:858)
+	at java.desktop/javax.swing.Timer.fireActionPerformed(Timer.java:311)
+	at java.desktop/javax.swing.Timer$DoPostEvent.run(Timer.java:243)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: java.lang.Exception: Failed to parse problem: AIService analyzeProblem: Failed to analyze problem - ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at vn.testgen.backend.BackendService.parseProblem(BackendService.java:145)
+	at vn.testgen.ui.ProblemInputPanel$1.doInBackground(ProblemInputPanel.java:256)
+	at vn.testgen.ui.ProblemInputPanel$1.doInBackground(ProblemInputPanel.java:253)
+	at java.desktop/javax.swing.SwingWorker$1.call(SwingWorker.java:304)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.desktop/javax.swing.SwingWorker.run(SwingWorker.java:343)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: AIService analyzeProblem: Failed to analyze problem - ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at com.competitive.ai.AIService.analyzeProblem(AIService.java:161)
+	at vn.testgen.backend.BackendService.parseProblem(BackendService.java:120)
+	... 8 more
+Caused by: java.io.IOException: ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at com.competitive.ai.ResponseParser.parseProblemAnalysis(ResponseParser.java:85)
+	at com.competitive.ai.AIService.analyzeProblem(AIService.java:155)
+	... 9 more
+2026-05-17 23:28:45.014 INFO    [main           ] [Logger] Logging system initialized
+2026-05-17 23:28:45.015 INFO    [main           ] [Main] TestGen application starting...
+2026-05-17 23:28:45.283 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-17 23:28:47.422 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-17 23:32:15.316 INFO    [main           ] [Logger] Logging system initialized
+2026-05-17 23:32:15.318 INFO    [main           ] [Main] TestGen application starting...
+2026-05-17 23:32:15.438 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-17 23:32:16.738 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-17 23:32:22.048 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Starting problem parse
+2026-05-17 23:32:22.958 SEVERE  [AWT-EventQueue-0] [ProblemInputPanel] Parse failed
+java.util.concurrent.ExecutionException: java.lang.Exception: Failed to parse problem: AIService analyzeProblem: Failed to analyze problem - ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at java.desktop/javax.swing.SwingWorker.get(SwingWorker.java:613)
+	at vn.testgen.ui.ProblemInputPanel$1.done(ProblemInputPanel.java:268)
+	at java.desktop/javax.swing.SwingWorker$5.run(SwingWorker.java:750)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.run(SwingWorker.java:848)
+	at java.desktop/sun.swing.AccumulativeRunnable.run(AccumulativeRunnable.java:112)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.actionPerformed(SwingWorker.java:858)
+	at java.desktop/javax.swing.Timer.fireActionPerformed(Timer.java:311)
+	at java.desktop/javax.swing.Timer$DoPostEvent.run(Timer.java:243)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: java.lang.Exception: Failed to parse problem: AIService analyzeProblem: Failed to analyze problem - ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at vn.testgen.backend.BackendService.parseProblem(BackendService.java:145)
+	at vn.testgen.ui.ProblemInputPanel$1.doInBackground(ProblemInputPanel.java:256)
+	at vn.testgen.ui.ProblemInputPanel$1.doInBackground(ProblemInputPanel.java:253)
+	at java.desktop/javax.swing.SwingWorker$1.call(SwingWorker.java:304)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.desktop/javax.swing.SwingWorker.run(SwingWorker.java:343)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.io.IOException: AIService analyzeProblem: Failed to analyze problem - ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at com.competitive.ai.AIService.analyzeProblem(AIService.java:161)
+	at vn.testgen.backend.BackendService.parseProblem(BackendService.java:120)
+	... 8 more
+Caused by: java.io.IOException: ResponseParser parseProblemAnalysis: Invalid JSON format - Response may be incomplete or malformed
+	at com.competitive.ai.ResponseParser.parseProblemAnalysis(ResponseParser.java:85)
+	at com.competitive.ai.AIService.analyzeProblem(AIService.java:155)
+	... 9 more
+2026-05-17 23:34:34.843 INFO    [main           ] [Logger] Logging system initialized
+2026-05-17 23:34:34.844 INFO    [main           ] [Main] TestGen application starting...
+2026-05-17 23:34:35.001 INFO    [main           ] [Main] Look and feel set successfully
+2026-05-17 23:34:36.651 INFO    [AWT-EventQueue-0] [Main] MainFrame created and displayed
+2026-05-17 23:34:41.271 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Starting problem parse
+2026-05-17 23:34:42.557 INFO    [AWT-EventQueue-0] [ProblemInputPanel] Parse successful: Tên bài toán

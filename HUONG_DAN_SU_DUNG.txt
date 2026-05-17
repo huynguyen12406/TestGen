@@ -1,0 +1,189 @@
+=================================================================
+  HƯỚNG DẪN SỬ DỤNG - AI TEST CASE GENERATOR
+  Nhóm: Nguyễn Thành Huy (Backend AI) + Hòa (GUI) + Trung (Compiler)
+=================================================================
+
+I. YÊU CẦU HỆ THỐNG
+-------------------
+1. Java JDK 17 trở lên
+2. Windows (đã test trên Windows 10/11)
+3. Kết nối internet (để gọi AI API)
+4. g++ compiler (cho C++ code compilation)
+5. Tải Tesseract để dùng OCR
+Kiểm tra Java:
+  java -version
+  
+Nếu chưa có Java, tải tại: https://www.oracle.com/java/technologies/downloads/
+
+
+II. CÁCH CHẠY
+-------------
+1. Giải nén file BT-Submission.zip
+
+2. Mở Command Prompt hoặc PowerShell
+
+3. Di chuyển vào folder:
+   cd BT-Submission
+
+4. Chạy app (chọn 1 trong 3 cách):
+   
+   Option A (Khuyến nghị):
+   run.bat
+   
+   Option B:
+   START_APP.bat
+   
+   Option C:
+   compile-and-run.bat
+
+5. App sẽ tự động compile (nếu cần) và mở GUI
+
+LƯU Ý: Lần đầu chạy sẽ mất 5-10 giây để compile code
+
+
+III. CÁCH SỬ DỤNG
+-----------------
+
+A. LẦN ĐẦU SỬ DỤNG
+-------------------
+1. Mở tab "Settings"
+2. Nhập API keys của bạn:
+   - Text API Key (Groq): Lấy từ https://console.groq.com/keys
+   - Vision API Key (Gemini): Lấy từ https://makersuite.google.com/app/apikey
+   
+   Bạn cần tự tạo API key miễn phí từ các trang trên
+   
+3. Provider: GROQ (mặc định - khuyến nghị)
+4. Click "Save Settings"
+
+B. LOAD ĐỀ BÀI
+--------------
+Option 1: Từ text
+  1. Tab "Problem Input"
+  2. Paste text đề bài vào ô
+  3. Click "Parse Problem"
+  4. Đợi AI phân tích (3-5 giây)
+
+Option 2: Từ ảnh
+  1. Tab "Problem Input"
+  2. Click "Load from Image"
+  3. Chọn file ảnh (.jpg, .png)
+  4. Đợi AI đọc ảnh (5-10 giây)
+
+C. SINH TEST CASES
+------------------
+1. Tab "Test Generation"
+2. Nhập số test cases (vd: 10)
+3. Click "Generate Test Cases"
+4. Đợi AI sinh test (5-10 giây)
+5. Xem kết quả trong bảng
+
+D. SINH CODE MẪU
+----------------
+1. Tab "Code Generation"
+2. Chọn loại code:
+   - AC (Accepted - đúng)
+   - WA (Wrong Answer - sai)
+   - TLE (Time Limit Exceeded - chậm)
+3. Click "Generate Code"
+4. Đợi AI sinh code (5-10 giây)
+5. Code sẽ hiện trong editor
+
+E. CHẠY & ĐÁNH GIÁ
+------------------
+1. Tab "Evaluation"
+2. Chọn code cần test
+3. Click "Run Tests"
+4. Xem kết quả: AC/WA/TLE cho từng test
+
+
+IV. ĐỀ BÀI MẪU
+---------------
+Có 2 đề bài mẫu trong folder:
+
+1. sample-problem.txt
+   - Bài đơn giản: Tìm số lớn nhất
+   - Dùng để test cơ bản
+
+2. sample-problem-hard.txt
+   - Bài khó: Longest Increasing Subsequence (LIS)
+   - Dùng để test khả năng AI với DP
+
+
+V. TÍNH NĂNG NỔI BẬT
+---------------------
+✅ Dual API Key System
+   - Groq (14,400 req/ngày) cho text
+   - Gemini (20 req/ngày) cho ảnh
+
+✅ OCR - Đọc text từ ảnh
+   - Chụp màn hình → text
+   - Scan tài liệu → text
+
+✅ Batch Code Generation
+   - Sinh nhiều code cùng lúc
+   - Tiết kiệm API calls
+
+✅ Smart Test Case Generation
+   - Tự động phát hiện format
+   - Sinh test đa dạng (biên, stress, ...)
+
+✅ C++ Code Generation
+   - Sinh code C++ tối ưu
+   - Compile & run tự động
+
+
+VI. XỬ LÝ LỖI
+--------------
+Lỗi: "API key không hợp lệ"
+→ Kiểm tra lại API key trong Settings
+
+Lỗi: "Rate limit exceeded"
+→ Đợi 1 phút rồi thử lại
+→ Hoặc đổi sang provider khác
+
+Lỗi: "Compilation failed"
+→ Kiểm tra g++ đã cài chưa
+→ Kiểm tra code syntax
+
+Lỗi: "Connection timeout"
+→ Kiểm tra kết nối internet
+
+
+VII. COMPILE LẠI (NẾU CẦN)
+---------------------------
+Nếu sửa code, compile lại:
+  recompile-all.bat
+
+
+VIII. CẤU TRÚC FOLDER
+---------------------
+BT-Submission/
+├── lib/           # Thư viện (Jackson, OkHttp)
+├── src/           # Source code
+├── out/           # Compiled classes (tự tạo)
+├── logs/          # Log files (tự tạo)
+├── run.bat        # Script chạy
+└── *.txt          # Đề bài mẫu
+
+
+IX. LIÊN HỆ HỖ TRỢ
+-------------------
+Nếu gặp vấn đề, liên hệ:
+- Nguyễn Thành Huy (Backend AI)
+- Email: [your-email]
+- GitHub: [your-github]
+
+
+X. GHI CHÚ
+----------
+- App dùng API miễn phí, có giới hạn requests/ngày
+- Groq: 14,400 req/ngày (khuyến nghị dùng)
+- Gemini: 20 req/ngày (chỉ dùng khi cần đọc ảnh)
+- Cần tự cung cấp API key qua Settings hoặc environment variables
+- Xem README.md để biết cách cấu hình
+
+
+=================================================================
+Chúc bạn sử dụng app thành công! 🎉
+=================================================================

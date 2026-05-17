@@ -1,0 +1,64 @@
+# ===== COMPILED OUTPUT =====
+out/
+*.class
+*.jar
+*.exe
+
+# ===== LOGS =====
+logs/
+*.log
+*.log.*
+*.lck
+
+# ===== ENVIRONMENT VARIABLES & SECRETS =====
+.env
+config.properties
+*.key
+*_key.txt
+api_keys.txt
+
+# ===== TEMPORARY FILES =====
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# ===== IDE FILES =====
+.classpath
+.project
+.settings/
+.vscode/
+.idea/
+
+# ===== DOCUMENTATION (MD files) =====
+*.md
+!README.md
+
+# ===== TEST FILES =====
+test_*.txt
+test_*.cpp
+test_*.exe
+sample-problem*.txt
+sample-problem*.html
+solution.cpp
+
+# ===== TESSERACT (too large for GitHub) =====
+tesseract/
+tesseract-*/
+*.zip
+
+# ===== BUILD ARTIFACTS =====
+target/
+build/
+dist/
+
+# ===== OS FILES =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== MISC =====
+*.txt
+!HUONG_DAN_SU_DUNG.txt
+!README.txt
