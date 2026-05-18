@@ -472,7 +472,7 @@ BT-Submission/
 
 ## 📄 License
 
-Educational project - HCMUT  
+Educational project - DUT
 © 2026 All rights reserved
 
 ---
