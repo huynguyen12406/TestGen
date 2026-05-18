@@ -464,9 +464,9 @@ BT-Submission/
 - Hòa - GUI Development  
 - Trung - Compiler Services
 
-**Email**: [your-email@example.com]
+**Email**: [huyhgbv1204@gmail.com]
 
-**GitHub**: [https://github.com/your-username/BT-Submission]
+**GitHub**: [https://github.com/huynguyen12406/TestGen]
 
 ---
 
